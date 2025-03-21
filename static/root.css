@@ -5,11 +5,11 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 a {
-    color: #6366f1;
+    color: #55acee;
     text-decoration: none;
 }
 a:hover {
-    color: #4f46e5;
+    color: #6366f1;
     text-decoration: underline;
 }
 .topbar {

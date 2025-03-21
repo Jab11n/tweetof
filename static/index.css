@@ -33,12 +33,26 @@ body {
     line-height: 31px;
     text-shadow: none;
 }
+.account-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 .front-login {
     background-color: #fff;
     margin-top: 32px;
     width: 300px;
     border: 1px solid #e1e8ed;
     padding: 12px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.front-signup {
+    background-color: #fff;
+    width: 324px;
+    border: 1px solid #e1e8ed;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -69,4 +83,45 @@ body {
 }
 #front-login-button:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+}
+.front-signup h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 1px solid #e1e8ed;
+}
+.front-signup p {
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding: 0 12px;
+}
+.front-footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    margin-left: -8px;
+    text-align: center;
+    color: #fff;
+    font-size: 11px;
+}
+.front-footer ul {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 0;
+}
+.front-footer li {
+    list-style: none;
+}
+.front-footer a {
+    color: #fff;
+}
+.front-footer a:hover {
+    text-decoration: none;
 }
