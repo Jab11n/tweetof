@@ -1,0 +1,33 @@
+body {
+    color: #292f33;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a {
+    color: #6366f1;
+    text-decoration: none;
+}
+a:hover {
+    color: #4f46e5;
+    text-decoration: underline;
+}
+.topbar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+}
+.container {
+    position: relative;
+    width: 890px;
+    margin: 0 auto;
+}
+ol,
+ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
