@@ -67,5 +67,17 @@ def get_post_loved(post_id, username):
     except ValueError as e:
         return jsonify({"error": "Invalid response from wasteof api!", "details": resp.text}), 500
 
+@app.route('/api/posts/<post_id>', methods=["GET", "PUT", "DELETE"])
+def get_post(post_id):
+    if request.method != "GET":
+        return jsonify({"error", "i am not sure how to do that, /posts/ajfioushouhgufhg only has get requests for right now"})
+    else:
+        try:
+            resp = requests.get(f"https://api.wasteof.money/posts/{post_id}")
+            return jsonify(resp.json()), resp.status_code
+        except requests.RequestException as e:
+            return jsonify({"error": "Failed to connect to wasteof api!", "details": str(e)}), 500
+
+
 if __name__ == '__main__':
     app.run(debug=True)

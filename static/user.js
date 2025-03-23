@@ -157,6 +157,63 @@ document.addEventListener("DOMContentLoaded", async () => {
                     postText.innerHTML = post.content;
                     postContent.appendChild(postText);
 
+                    if (post.repost) {
+                        let res = await fetch(`/api/posts/${post.repost._id}`, {
+                            method: "GET",
+                        });
+                        let repostInfo = await res.json();
+                        if (res.ok) {
+                            let retweetContent = document.createElement("div");
+                            retweetContent.className = "retweetcontent";
+                            let retweetContentContainer =
+                                document.createElement("div");
+                            retweetContentContainer.className = "post-inner1";
+                            let retweetAuthorPicture =
+                                document.createElement("img");
+                            retweetAuthorPicture.className = "post-pfp";
+                            retweetAuthorPicture.src =
+                                "https://api.wasteof.money/users/" +
+                                repostInfo.poster.name +
+                                "/picture";
+                            let retweetContentContent =
+                                document.createElement("div");
+                            retweetContentContent.className = "post-content";
+                            let retweetPosterInfo =
+                                document.createElement("div");
+                            retweetPosterInfo.className = "poster-info";
+                            let retweetAuthorName = document.createElement("a");
+                            retweetAuthorName.className = "poster-name";
+                            retweetAuthorName.href =
+                                "/users/" + repostInfo.poster.name;
+                            retweetAuthorName.innerText =
+                                repostInfo.poster.name;
+                            let retweetPostTime = document.createElement("p");
+                            retweetPostTime.className = "post-time";
+                            retweetPostTime.innerText = new Date(
+                                repostInfo.time
+                            ).toLocaleString();
+                            let repostText = document.createElement("div");
+                            repostText.className = "post-text";
+                            repostText.innerHTML = repostInfo.content;
+
+                            retweetContent.appendChild(retweetContentContainer);
+                            retweetContentContainer.appendChild(
+                                retweetAuthorPicture
+                            );
+                            retweetContentContainer.appendChild(
+                                retweetContentContent
+                            );
+                            retweetContentContent.appendChild(
+                                retweetPosterInfo
+                            );
+                            retweetPosterInfo.appendChild(retweetAuthorName);
+                            retweetPosterInfo.appendChild(retweetPostTime);
+                            retweetContentContent.appendChild(repostText);
+
+                            postContent.appendChild(retweetContent);
+                        }
+                    }
+
                     postInnerElement.appendChild(postContent);
                     postElement.appendChild(postInnerElement);
 
