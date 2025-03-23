@@ -3,13 +3,13 @@ body {
     font-size: 14px;
     line-height: 18px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
 }
 a {
     color: #55acee;
     text-decoration: none;
 }
 a:hover {
-    color: #6366f1;
     text-decoration: underline;
 }
 .topbar {
@@ -30,4 +30,7 @@ ul {
     margin: 0;
     list-style: none;
     padding: 0;
+}
+.page-container {
+    padding-top: 46px;
 }

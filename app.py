@@ -8,6 +8,10 @@ app = Flask(__name__, static_folder='static', template_folder='templates')
 def index():
     return render_template('index.html')
 
+@app.route('/users/<username>')
+def user_profile(username):
+    return render_template('user.html', username=username)
+
 @app.route('/static/<path:path>')
 def serve_static(path):
     return send_from_directory('static', path)
@@ -29,7 +33,15 @@ def login():
         )
         return jsonify(resp.json()), resp.status_code
     except requests.RequestException as e:
-        return jsonify({"error": "Failed to connect to external API", "details": str(e)}), 500
+        return jsonify({"error": "Failed to connect to wasteof api!", "details": str(e)}), 500
+
+@app.route('/api/users/<username>', methods=['GET'])
+def get_user(username):
+    try:
+        resp = requests.get(f"https://api.wasteof.money/users/{username}")
+        return jsonify(resp.json()), resp.status_code
+    except requests.RequestException as e:
+        return jsonify({"error": "Failed to connect to wasteof api!", "details": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

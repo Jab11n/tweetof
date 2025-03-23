@@ -1,0 +1,87 @@
+.post-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 13px 15px 15px;
+    border: 1px solid #e1e8ed;
+    background-color: #fff;
+}
+.retweet {
+    color: #8899a6;
+}
+.retweet i {
+    color: #77b255;
+}
+.post-inner1 {
+    display: flex;
+    gap: 6px;
+}
+.post-pfp {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+.post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.poster-info {
+    margin-top: 2px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+.poster-info > p,
+.poster-info > a {
+    margin: 0;
+}
+.poster-name {
+    font-weight: 700;
+    color: #292f33;
+}
+.poster-name:hover {
+    color: #292f33;
+}
+.post-time {
+    font-size: 12px;
+    color: #8899a6;
+}
+.post-text {
+    font-size: 14px;
+    color: #292f33;
+    margin: 0px;
+}
+.post-text img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 12px;
+    margin: 6px 0;
+    cursor: zoom-in;
+}
+.post-actions {
+    display: flex;
+    gap: 40px;
+    font-size: 18px;
+    margin-left: 30px;
+}
+.post-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    color: #ccd6dd;
+}
+.action-reply:hover {
+    color: #226699 !important;
+    text-decoration: none !important;
+}
+.action-repost:hover {
+    color: #5c913b !important;
+    text-decoration: none !important;
+}
+.action-like:hover {
+    color: #ffac33 !important;
+    text-decoration: none !important;
+}
