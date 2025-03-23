@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
+        document.getElementById("wall-nav").href = `/users/${username}/wall`;
+
         async function fetchUserData(username) {
             const response = await fetch(`/api/users/${username}`);
             if (!response.ok) {
@@ -28,6 +30,26 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
+        async function fetchUserPosts(username) {
+            const response = await fetch(`/api/users/${username}/posts`);
+            if (!response.ok) {
+                console.error(
+                    "Error fetching user posts:",
+                    response.statusText
+                );
+                alert(
+                    "An error occurred while fetching posts. " +
+                        response.statusText +
+                        " (" +
+                        response.status +
+                        ")"
+                );
+                return null;
+            } else {
+                return await response.json();
+            }
+        }
+
         const userData = await fetchUserData(username);
 
         if (userData) {
@@ -43,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (userData.verified) {
                 document.getElementById("name").innerHTML =
                     document.getElementById("name").innerHTML +
-                    "&nbsp;<i class='fa-solid fa-circle-check verified fa-sm'></i>";
+                    "&nbsp;<i class='fa-solid fa-circle-check verified'></i>";
             }
             if (userData.permissions.admin) {
                 document.getElementById("name").innerHTML =
@@ -54,6 +76,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 document.getElementById("name").innerHTML =
                     document.getElementById("name").innerHTML +
                     "&nbsp;<i class='fa-solid fa-ban'></i>";
+            }
+            if (userData.beta) {
+                document.getElementById("name").innerHTML =
+                    document.getElementById("name").innerHTML +
+                    "&nbsp;<i class='fa-solid fa-flask'></i>";
             }
             if (userData.name === "-gr") {
                 document.getElementById("name").innerHTML =
@@ -84,6 +111,110 @@ document.addEventListener("DOMContentLoaded", async () => {
                     "<i class='fa-solid fa-circle-half-stroke'></i>&ensp;Offline";
             }
             document.getElementById("loginuser-name").innerText = userData.name;
+        }
+
+        const userPosts = await fetchUserPosts(username);
+
+        if (userPosts) {
+            for (let i = 0; i < userPosts.posts.length; i++) {
+                let post = userPosts.posts[i];
+                if (post) {
+                    let postElement = document.createElement("div");
+                    postElement.className = "post-compact";
+
+                    if (post.repost) {
+                        let retweetElement = document.createElement("div");
+                        retweetElement.className = "retweet";
+                        retweetElement.innerHTML = `<i class="fa-solid fa-repeat"></i>&ensp;${post.poster.name} reposted`;
+                        postElement.appendChild(retweetElement);
+                    }
+                    let postInnerElement = document.createElement("div");
+                    postInnerElement.className = "post-inner1";
+
+                    let postPfp = document.createElement("img");
+                    postPfp.className = "post-pfp";
+                    postPfp.src =
+                        "https://api.wasteof.money/users/" +
+                        post.poster.name +
+                        "/picture";
+                    postInnerElement.appendChild(postPfp);
+
+                    let postContent = document.createElement("div");
+                    postContent.className = "post-content";
+
+                    let posterInfo = document.createElement("div");
+                    posterInfo.className = "poster-info";
+                    posterInfo.innerHTML = `
+                    <a class="poster-name">@${post.poster.name}</a>
+                    <p class="post-time">${new Date(
+                        post.time
+                    ).toLocaleString()}</p>
+                `;
+                    postContent.appendChild(posterInfo);
+
+                    let postText = document.createElement("div");
+                    postText.className = "post-text";
+                    postText.innerHTML = post.content;
+                    postContent.appendChild(postText);
+
+                    postInnerElement.appendChild(postContent);
+                    postElement.appendChild(postInnerElement);
+
+                    let postActions = document.createElement("div");
+                    postActions.className = "post-actions";
+                    let postActionsInsert;
+                    if (localStorage.getItem("Token")) {
+                        let res = await fetch(
+                            `/api/posts/${
+                                post._id
+                            }/loves/${localStorage.getItem("Username")}`,
+                            {
+                                method: "GET",
+                                headers: {
+                                    Authorization:
+                                        localStorage.getItem("Token"),
+                                },
+                            }
+                        );
+                        let resData = await res.json();
+                        if (res.ok && resData.loved === "true") {
+                            postActionsInsert = `
+                                <a class="post-action action-like action-like-true" href="#">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="like-count">${post.loves}</span>
+                                </a>
+                            `;
+                        } else {
+                            postActionsInsert = `
+                                <a class="post-action action-like" href="#">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="like-count">${post.loves}</span>
+                                </a>
+                            `;
+                        }
+                    } else {
+                        postActionsInsert = `
+                                <a class="post-action action-like" href="#">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="like-count">${post.loves}</span>
+                    </a>`;
+                    }
+                    postActions.innerHTML = `
+                    <a class="post-action action-reply" href="#">
+                        <i class="fa-solid fa-reply"></i>
+                        <span class="comment-count">${post.comments}</span>
+                    </a>
+                    <a class="post-action action-repost" href="#">
+                        <i class="fa-solid fa-repeat"></i>
+                        <span class="repost-count">${post.reposts}</span>
+                    </a>
+                    ${postActionsInsert}
+                `;
+                    postElement.appendChild(postActions);
+
+                    document.getElementById("posts").appendChild(postElement);
+                }
+            }
         }
 
         document.getElementById("user-pfp").src =

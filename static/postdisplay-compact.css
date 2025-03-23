@@ -1,4 +1,5 @@
 .post-compact {
+    margin-top: -1px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -73,15 +74,29 @@
     font-weight: 700;
     color: #ccd6dd;
 }
-.action-reply:hover {
+.action-reply:hover,
+.action-reply-true {
     color: #226699 !important;
     text-decoration: none !important;
 }
-.action-repost:hover {
+.action-repost:hover,
+.action-repost-true {
     color: #5c913b !important;
     text-decoration: none !important;
 }
-.action-like:hover {
+.action-like:hover,
+.action-like-true {
     color: #ffac33 !important;
     text-decoration: none !important;
+}
+.post-text p,
+.post-text a,
+.post-text li,
+.post-text ul,
+.post-text ol,
+.post-text em,
+.post-text strong,
+.post-text i {
+    margin: 4px 0;
+    font-size: 16px;
 }

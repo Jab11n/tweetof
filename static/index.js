@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (resp.ok) {
                     localStorage.setItem("Token", data.token);
+                    localStorage.setItem("Username", username);
                     alert("Login Successful.");
                 }
             } catch (error) {
