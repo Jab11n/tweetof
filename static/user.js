@@ -7,6 +7,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         document.getElementById("wall-nav").href = `/users/${username}/wall`;
+        document.getElementById("posts-count").href = `#`;
+        document.getElementById(
+            "following"
+        ).href = `/users/${username}/following`;
+        document.getElementById(
+            "followers"
+        ).href = `/users/${username}/followers`;
 
         async function fetchUserData(username) {
             const response = await fetch(`/api/users/${username}`);
