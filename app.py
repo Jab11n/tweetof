@@ -16,7 +16,7 @@ def user_profile(username):
 def serve_static(path):
     return send_from_directory('static', path)
 
-@app.route('/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def login():
     data = request.json
     username = data.get('username')
