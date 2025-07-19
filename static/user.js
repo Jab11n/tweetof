@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     let postElement = document.createElement("div");
                     postElement.className = "post-compact";
 
-                    if (post.repost) {
+                    if (post.repost || post.repost === null) {
                         let retweetElement = document.createElement("div");
                         retweetElement.className = "retweet";
                         retweetElement.innerHTML = `<i class="fa-solid fa-repeat"></i>&ensp;${post.poster.name} reposted`;
@@ -226,6 +226,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                             postContent.appendChild(retweetContent);
                         }
+                    } else if (post.repost === null) {
+                        let retweetContent = document.createElement("div");
+                        retweetContent.className = "retweetcontent";
+                        retweetContent.innerText =
+                            "The post that was reposted has been deleted.";
+                        postContent.appendChild(retweetContent);
                     }
 
                     postInnerElement.appendChild(postContent);
