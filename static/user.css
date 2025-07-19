@@ -1,6 +1,7 @@
 body {
     background-color: #f5f8fa;
     color: #292f33;
+    overflow-x: hidden;
 }
 #page-container {
     padding-top: 46px;
