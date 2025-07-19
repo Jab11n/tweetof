@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         ).href = `/users/${username}/followers`;
 
         async function fetchUserData(username) {
-            const response = await fetch(`/api/users/${username}`);
+            const response = await fetch(
+                `https://api.wasteof.money/users/${username}`
+            );
             if (!response.ok) {
                 console.error("Error fetching user data:", response.statusText);
                 if (response.status === 404) {
@@ -38,7 +40,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         async function fetchUserPosts(username) {
-            const response = await fetch(`/api/users/${username}/posts`);
+            const response = await fetch(
+                `https://api.wasteof.money/users/${username}/posts`
+            );
             if (!response.ok) {
                 console.error(
                     "Error fetching user posts:",
@@ -165,9 +169,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     postContent.appendChild(postText);
 
                     if (post.repost) {
-                        let res = await fetch(`/api/posts/${post.repost._id}`, {
-                            method: "GET",
-                        });
+                        let res = await fetch(
+                            `https://api.wasteof.money/posts/${post.repost._id}`,
+                            {
+                                method: "GET",
+                            }
+                        );
                         let repostInfo = await res.json();
                         if (res.ok) {
                             let retweetContent = document.createElement("div");
@@ -229,7 +236,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     let postActionsInsert;
                     if (localStorage.getItem("Token")) {
                         let res = await fetch(
-                            `/api/posts/${
+                            `https://api.wasteof.money/posts/${
                                 post._id
                             }/loves/${localStorage.getItem("Username")}`,
                             {

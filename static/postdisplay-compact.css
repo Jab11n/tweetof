@@ -78,16 +78,19 @@
     color: #8899a6;
 }
 .action-reply:hover,
+.action-reply:hover > span,
 .action-reply-true {
     color: #226699 !important;
     text-decoration: none !important;
 }
 .action-repost:hover,
+.action-repost:hover > span,
 .action-repost-true {
     color: #5c913b !important;
     text-decoration: none !important;
 }
 .action-like:hover,
+.action-like:hover > span,
 .action-like-true {
     color: #ffac33 !important;
     text-decoration: none !important;
