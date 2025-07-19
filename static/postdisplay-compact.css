@@ -74,6 +74,9 @@
     font-weight: 700;
     color: #ccd6dd;
 }
+.post-action span {
+    color: #8899a6;
+}
 .action-reply:hover,
 .action-reply-true {
     color: #226699 !important;

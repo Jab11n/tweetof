@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (username && password) {
             try {
-                const resp = await fetch("/api/login", {
+                const resp = await fetch("https://api.wasteof.money/session", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -20,7 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const data = await resp.json();
 
                 if (resp.ok) {
-                    localStorage.setItem("Token", data.token);
+                    document.cookie = `Token=${data.token}; path=/; max-age=${
+                        60 * 60 * 24 * 7 * 30
+                    }`;
                     localStorage.setItem("Username", username);
                     alert("Login Successful.");
                 }
