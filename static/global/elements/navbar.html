@@ -61,6 +61,14 @@
                     </a>
                 </li>
             </ul>
+            <div class="nav-navigation">
+                <a href="/" class="nav-loc" id="nav-go-home">
+                    <i class="fa-solid fa-house"></i>&ensp;Home
+                </a>
+                <a href="/explore" class="nav-loc" id="nav-go-explore">
+                    <i class="fa-solid fa-hashtag"></i>&ensp;Explore
+                </a>
+            </div>
             <div class="pull-right">
                 <div class="search">
                     <input
@@ -74,7 +82,16 @@
                         aria-expanded="false"
                     />
                 </div>
-                <a class="nav-account-action" id="nav-login">Log in</a>
+                <a
+                    class="nav-account-action"
+                    id="nav-login"
+                    style="display: none"
+                    >Log in</a
+                >
+                <img id="nav-user" style="display: none" />
+                <button id="nav-compose" style="display: none">
+                    <i class="fa-solid fa-feather-pointed"></i>&ensp;Tweet
+                </button>
             </div>
         </div>
     </div>

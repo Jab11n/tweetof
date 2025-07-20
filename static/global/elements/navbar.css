@@ -18,22 +18,27 @@
     text-align: center;
     width: auto;
 }
+.container {
+    display: flex;
+    align-items: center;
+}
 .nav {
     margin-right: 12px;
     text-align: left;
 }
 .Icon {
     float: left;
-    margin: 4px 0 0 4px;
+    margin: 0px 0 0 4px;
     width: 58px;
     height: 38px;
 }
 .pull-right {
-    margin: 7px 30px 0 0;
+    flex: 1;
     float: right;
     text-align: left;
     display: flex;
     align-items: center;
+    justify-content: right;
     gap: 20px;
 }
 .search-input {
@@ -58,4 +63,54 @@
 .nav-account-action:hover {
     color: #66757f;
     text-decoration: underline;
+}
+#nav-user {
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+}
+.nav-navigation {
+    margin-left: 18px;
+    height: 46px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+.nav-loc {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #66757f;
+    box-sizing: border-box;
+    border-top: 4px solid #ffffffff;
+    border-bottom: 4px solid #ffffffff;
+    padding: 0 6px;
+}
+.nav-loc:hover {
+    text-decoration: none;
+    color: #226699;
+}
+.nav-loc i {
+    font-size: 18px;
+}
+.nav-loc-cur {
+    border-bottom: 4px solid #226699 !important;
+}
+#nav-compose {
+    width: fit-content;
+    height: 34px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #3b88c3;
+    background-color: #55acee;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 14px;
+}
+#nav-compose:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
 }
