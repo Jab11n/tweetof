@@ -231,4 +231,8 @@ body {
 }
 .post-navitem-current {
     color: #292f33 !important;
+    cursor: default;
+}
+.post-navitem-current:hover {
+    text-decoration: none;
 }
