@@ -29,4 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+    const loginHow = document.getElementById("login-how");
+    loginHow.addEventListener("click", () => {
+        if (loginHow.className == "login-how-closed") {
+            loginHow.className = "login-how-open";
+            loginHow.innerHTML = `<span>How this works&ensp;<i class="fa-solid fa-caret-up"></i></span><br>Tweetof interacts directly with the wasteof.money API to provide you the same content as what you would see on wasteof.money but from a different site and interface (this one :P). No user data is stored on Tweetof servers, and everything is processed on wasteof.money's servers. Wasteof.money's terms of use and privacy policy apply.`;
+        } else {
+            loginHow.className = "login-how-closed";
+            loginHow.innerHTML = `<span>How this works&ensp;<i class="fa-solid fa-caret-down"></i></span>`;
+        }
+    });
 });

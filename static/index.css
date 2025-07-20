@@ -134,3 +134,17 @@ body {
 .front-footer a:hover {
     text-decoration: none;
 }
+#login-how {
+    cursor: pointer;
+    margin: 0;
+    padding: 12px 12px 0 12px;
+}
+#login-how:hover > span {
+    color: #55acee !important;
+}
+.login-how-closed {
+    color: #999999;
+}
+.login-how-open {
+    color: #505050;
+}
