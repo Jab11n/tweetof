@@ -44,8 +44,8 @@ def index():
     return render_template('home-loggedout.html')
 
 @app.route('/users/<username>')
-async def user_profile(username):
-    u = await requests.get(f"https://api.wasteof.money/users/{username}").json()
+def user_profile(username):
+    u = requests.get(f"https://api.wasteof.money/users/{username}").json()
     user = {
         'postcount': u["stats"]["posts"],
         'followers': u["stats"]["followers"],
@@ -56,8 +56,8 @@ async def user_profile(username):
     return render_template('user.html', username=username, user=user)
 
 @app.route('/posts/<post_id>')
-async def post_view(post_id):
-    post_info = await requests.get(f"https://api.wasteof.money/posts/{post_id}").json()
+def post_view(post_id):
+    post_info = requests.get(f"https://api.wasteof.money/posts/{post_id}").json()
     post_contents = convertPostContent(post_info["content"])
     post = {
         'author': post_info["poster"]["name"],
