@@ -88,13 +88,13 @@
 }
 .nav-loc:hover {
     text-decoration: none;
-    color: #226699;
+    color: #55acee;
 }
 .nav-loc i {
     font-size: 18px;
 }
 .nav-loc-cur {
-    border-bottom: 4px solid #226699 !important;
+    border-bottom: 4px solid #55acee !important;
 }
 #nav-compose {
     width: fit-content;
