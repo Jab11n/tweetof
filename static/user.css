@@ -239,3 +239,18 @@ body {
 .post-navitem-current:hover {
     text-decoration: none;
 }
+#tweet-to-user {
+    width: 100%;
+    min-height: 32px;
+    margin-top: 14px;
+    border: 1px solid #3b88c3;
+    background-color: #55acee;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 14px;
+}
+#tweet-to-user:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+}

@@ -122,8 +122,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     "<i class='fa-solid fa-circle-half-stroke'></i>&ensp;Offline";
             }
             if (localStorage.getItem("Username")) {
-                document.getElementById("login-user").style.display = "none";
+                let tweetToUser = document.createElement("button");
+                tweetToUser.id = "tweet-to-user";
+                tweetToUser.innerHTML = `<i class="fa-solid fa-feather-pointed"></i>&ensp;Tweet to @${userData.name}`;
+                document.getElementById("user").appendChild(tweetToUser);
             } else {
+                document.getElementById("login-user").style.display = "flex";
                 document.getElementById("loginuser-name").innerText =
                     userData.name;
             }
