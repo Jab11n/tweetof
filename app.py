@@ -5,7 +5,7 @@ import re
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
-def convertpostcontent(content):
+def convertPostContent(content):
     soup = BeautifulSoup(content, 'html.parser')
     parts = []
     for e in soup.contents:
@@ -21,27 +21,7 @@ def convertpostcontent(content):
     converted = re.sub(r'@(\w+)', r'[@\1](https://tweetof.jab11n.tech/users/\1)', converted)
     return converted
 
-@app.route('/')
-def index():
-    return render_template('home-loggedout.html')
-
-@app.route('/users/<username>')
-def user_profile(username):
-    return render_template('user.html', username=username)
-
-@app.route('/posts/<post_id>')
-def post_view(post_id):
-    post_info = requests.get(f"https://api.wasteof.money/posts/{post_id}").json()
-    post_contents = convertpostcontent(post_info["content"])
-    post = {
-        'author': post_info["poster"]["name"],
-        'content': post_contents[:400] + '...' if len(post_contents) > 400 else post_contents,
-        'time': post_info["time"],
-        'comments': post_info["comments"],
-        'loves': post_info["loves"],
-        'reposts': post_info["reposts"]
-    }
-    c = post_info["poster"]["color"]
+def getColor(color_name):
     colors = {
         'red': '#ef4444',
         'orange': '#f97316',
@@ -57,8 +37,37 @@ def post_view(post_id):
         'pink': '#ec4899',
         'gray': '#6b7280'
     }
-    color = colors.get(c)
-    return render_template('post.html', id=post_id, post=post, color=color)
+    return colors.get(color_name)
+
+@app.route('/')
+def index():
+    return render_template('home-loggedout.html')
+
+@app.route('/users/<username>')
+async def user_profile(username):
+    u = await requests.get(f"https://api.wasteof.money/users/{username}").json()
+    user = {
+        'postcount': u["stats"]["posts"],
+        'followers': u["stats"]["followers"],
+        'following': u["stats"]["following"],
+        'color': getColor(u["color"]),
+        'bio': u["bio"]
+    }
+    return render_template('user.html', username=username, user=user)
+
+@app.route('/posts/<post_id>')
+async def post_view(post_id):
+    post_info = await requests.get(f"https://api.wasteof.money/posts/{post_id}").json()
+    post_contents = convertPostContent(post_info["content"])
+    post = {
+        'author': post_info["poster"]["name"],
+        'content': post_contents[:400] + '...' if len(post_contents) > 400 else post_contents,
+        'time': post_info["time"],
+        'comments': post_info["comments"],
+        'loves': post_info["loves"],
+        'reposts': post_info["reposts"]
+    }
+    return render_template('post.html', id=post_id, post=post, color=getColor(post_info["poster"]["color"]))
 
 @app.route('/static/<path:path>')
 def serve_static(path):

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>tweetof.money</title>
+        <title>{{ username }} on Tweetof</title>
         <link rel="stylesheet" href="/static/root.css" />
         <link rel="stylesheet" href="/static/global/elements/navbar.css" />
         <link rel="stylesheet" href="/static/user.css" />
@@ -15,6 +15,17 @@
             referrerpolicy="no-referrer"
         />
         <link rel="stylesheet" href="/static/postdisplay-compact.css" />
+
+        <meta name="theme-color" content="{{ user.color }}" />
+        <meta
+            property="og:title"
+            content="@{{ username }}'s profile on Tweetof"
+        />
+        <meta
+            property="og:description"
+            content="`{{ user.bio }}`\n\n{{ username }} has {{ user.posts }} posts, {{ user.followers }} followers, and is following {{ user.following }} users on wasteof.money."
+        />
+        <meta property="og:site_name" content="Tweetof" />
     </head>
     <body>
         <div class="topbar">
