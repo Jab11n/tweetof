@@ -225,6 +225,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                             retweetContentContent.appendChild(repostText);
 
                             postContent.appendChild(retweetContent);
+
+                            retweetContent.addEventListener("click", (e) => {
+                                e.stopPropagation();
+                                window.location.href = `/posts/${repostInfo._id}`;
+                            });
                         }
                     } else if (post.repost === null) {
                         let retweetContent = document.createElement("div");
@@ -290,6 +295,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     postElement.appendChild(postActions);
 
                     document.getElementById("posts").appendChild(postElement);
+
+                    postElement.addEventListener("click", () => {
+                        window.location.href = `/posts/${post._id}`;
+                    });
                 }
             }
         }

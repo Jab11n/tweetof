@@ -6,6 +6,7 @@
     padding: 13px 15px 15px;
     border: 1px solid #e1e8ed;
     background-color: #fff;
+    cursor: pointer;
 }
 .retweet {
     color: #8899a6;
