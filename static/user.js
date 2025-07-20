@@ -121,7 +121,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 document.getElementById("user-online").innerHTML =
                     "<i class='fa-solid fa-circle-half-stroke'></i>&ensp;Offline";
             }
-            document.getElementById("loginuser-name").innerText = userData.name;
+            if (localStorage.getItem("Username")) {
+                document.getElementById("login-user").style.display = "none";
+            } else {
+                document.getElementById("loginuser-name").innerText =
+                    userData.name;
+            }
         }
 
         const userPosts = await fetchUserPosts(username);
