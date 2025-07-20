@@ -78,6 +78,9 @@ body {
     border-bottom: 4px solid #226699 !important;
     cursor: default;
 }
+.stat-current:hover > p {
+    color: #66757f !important;
+}
 .stat h2,
 .stat p {
     margin: 0;
