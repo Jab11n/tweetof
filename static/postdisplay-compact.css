@@ -1,12 +1,17 @@
 .post-compact {
-    margin-top: -1px;
     display: flex;
     flex-direction: column;
     gap: 4px;
     padding: 13px 15px 15px;
-    border: 1px solid #e1e8ed;
+    border-top: 1px solid #e1e8ed;
+    border-left: 1px solid #e1e8ed;
+    border-right: 1px solid #e1e8ed;
+    border-bottom: 1px solid #fff;
     background-color: #fff;
     cursor: pointer;
+}
+.post-compact:hover {
+    border: 1px solid rgba(34, 102, 153, 0.5);
 }
 .retweet {
     color: #8899a6;
