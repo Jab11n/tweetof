@@ -51,7 +51,7 @@ def user_profile(username):
         'followers': u["stats"]["followers"],
         'following': u["stats"]["following"],
         'color': getColor(u["color"]),
-        'bio': u["bio"]
+        'bio': u["bio"] + '\n\n'
     }
     return render_template('user.html', username=username, user=user)
 
