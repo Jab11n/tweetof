@@ -20,9 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const data = await resp.json();
 
                 if (resp.ok) {
-                    document.cookie = `Token=${data.token}; path=/; max-age=${
-                        60 * 60 * 24 * 7 * 30
-                    }`;
+                    localStorage.setItem("Token", data.token);
                     localStorage.setItem("Username", username);
                     alert("Login Successful.");
                 }

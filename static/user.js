@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     let postElement = document.createElement("div");
                     postElement.className = "post-compact";
 
-                    if (post.repost || post.repost === null) {
+                    if (post.repost && post.content == "") {
                         let retweetElement = document.createElement("div");
                         retweetElement.className = "retweet";
                         retweetElement.innerHTML = `<i class="fa-solid fa-repeat"></i>&ensp;${post.poster.name} reposted`;
