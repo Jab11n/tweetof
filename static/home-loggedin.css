@@ -138,7 +138,6 @@ body {
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 #who-to-follow h2 {
     margin: 0;
@@ -150,6 +149,17 @@ body {
     padding-left: 12px;
     padding-right: 12px;
     border-bottom: 1px solid #e1e8ed;
+}
+.follow-users {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.follow-user {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px;
 }
 .follow-user-btn {
     box-sizing: unset;
@@ -173,4 +183,17 @@ body {
 }
 .follow-user-btn i {
     color: #55acee;
+}
+.follow-user-h {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.follow-user-h img {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}
+.follow-user-h p {
+    margin: 0;
 }
