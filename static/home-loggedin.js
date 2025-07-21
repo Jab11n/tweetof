@@ -184,18 +184,23 @@ ${postActionsInsert}
                 `;
         postElement.appendChild(postActions);
 
-        document.getElementById("posts").appendChild(postElement);
-
         postElement.addEventListener("click", () => {
             window.location.href = `/posts/${post._id}`;
         });
+
+        return postElement;
     }
 
     if (homePosts) {
-        Promise.all(homePosts.posts.map((post) => loadPost(post))).catch(
-            (e) => {
+        Promise.all(homePosts.posts.map((post) => loadPost(post)))
+            .then((elems) => {
+                const postContainer = document.getElementById("posts");
+                for (const e of elems) {
+                    postContainer.appendChild(e);
+                }
+            })
+            .catch((e) => {
                 console.error(e);
-            }
-        );
+            });
     }
 });
