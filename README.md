@@ -16,3 +16,5 @@ flask run --port 8000 --debug
 > [!NOTE]
 > Use port 8000, 8001, 3000, or 5173 when testing locally because those ports on localhost are whitelisted by the wasteof.money API. When visiting in your browser, you must visit `localhost` as `127.0.0.1` and similar are not whitelisted in the wasteof.money API.
 
+## Support & Discission
+You can [join my Discord server](https://discord.gg/45BEnzzqQM) to talk about this and my other projects, ping me `@jab11n` in the wasteof Discord server, or email me at hi at jab11n dot tech.
