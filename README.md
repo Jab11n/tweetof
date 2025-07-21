@@ -1,4 +1,5 @@
-# Tweetof.money
+<img width="1125" height="375" alt="tweetof banner" src="https://github.com/user-attachments/assets/bbf99d50-4410-4745-bcaa-17cc78995482" />
+# Tweetof
 *Wasteof if it were Twitter in 2015*  
 Tweetof is a custom [wasteof.money](https://wasteof.money) client designed to look like Twitter circa 2015. It is a basic Flask application with the goal to offer most wasteof features (aside from account settings, use wasteof.money for that) and some extra quality-of-life improvements such as better embeds for links on Discord and Twitter. It is accessible at [tweetof.jab11n.tech](https://tweetof.jab11n.tech).
 
