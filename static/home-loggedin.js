@@ -1,3 +1,7 @@
+if (!localStorage.getItem("Token")) {
+    window.location.href = "/";
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     const me = await (
         await fetch("https://api.wasteof.money/session", {
@@ -69,7 +73,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         let postElement = document.createElement("div");
         postElement.className = "post-compact";
 
-        if (post.repost && post.content == "") {
+        if (
+            post.repost &&
+            (post.content.trim() == '""' ||
+                post.content.trim() == undefined ||
+                post.content.trim() == "" ||
+                post.content.trim() == "<p></p>")
+        ) {
             let retweetElement = document.createElement("div");
             retweetElement.className = "retweet";
             retweetElement.innerHTML = `<i class="fa-solid fa-repeat"></i>&ensp;${post.poster.name} reposted`;
@@ -99,6 +109,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         let postText = document.createElement("div");
         postText.className = "post-text";
         postText.innerHTML = post.content;
+        if (
+            post.content.trim() == '""' ||
+            post.content.trim() == undefined ||
+            post.content.trim() == "" ||
+            post.content.trim() == "<p></p>"
+        ) {
+            postText.style.display = "none";
+        }
         postContent.appendChild(postText);
 
         if (post.repost) {
