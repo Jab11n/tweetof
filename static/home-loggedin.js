@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 let posterInfo = document.createElement("div");
                 posterInfo.className = "poster-info";
                 posterInfo.innerHTML = `
-                    <a class="poster-name">@${post.poster.name}</a>
+                    <a class="poster-name" href="/users/${post.poster.name}">@${
+                    post.poster.name
+                }</a>
                     <p class="post-time">${new Date(
                         post.time
                     ).toLocaleString()}</p>
