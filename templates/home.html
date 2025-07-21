@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home - Tweetof</title>
+        <link rel="stylesheet" href="/static/root.css" />
+        <link rel="stylesheet" href="/static/global/elements/navbar.css" />
+        <link rel="stylesheet" href="/static/home-loggedin.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="/static/postdisplay-compact.css" />
+    </head>
+    <body>
+        <div class="topbar">
+            <div id="navbar"></div>
+        </div>
+
+        <div id="home-content">
+            <div id="home-col-left">
+                <div id="home-you">
+                    <img id="you-banner" />
+                    <img id="you-pfp" />
+                    <div id="home-you-name">
+                        <h2 id="home-username"></h2>
+                    </div>
+                    <div id="home-you-stats">
+                        <a class="home-stat" id="home-posts" href="#">
+                            <p>TWEETS</p>
+                            <h2></h2>
+                        </a>
+                        <a class="home-stat" id="home-followers" href="#">
+                            <p>FOLLOWERS</p>
+                            <h2></h2>
+                        </a>
+                        <a class="home-stat" id="home-following" href="#">
+                            <p>FOLLOWING</p>
+                            <h2></h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="home-center">
+                <div id="tweet-box">
+                    <img src="https://placehold.co/256" id="tweet-box-pfp" />
+                    <textarea
+                        id="tweet-box-compose"
+                        placeholder="What's happening?!"
+                    ></textarea>
+                </div>
+                <div id="posts"></div>
+            </div>
+            <div id="home-col-right">
+                <div id="who-to-follow">
+                    <h2>Who to follow</h2>
+                    <div id="follow-users">
+                        <div class="follow-user">
+                            <a class="follow-user-h">
+                                <img src="https://placehold.co/100" />
+                                <p>@username</p>
+                            </a>
+                            <button class="follow-user-btn">
+                                <i class="fa-solid fa-user-plus"></i
+                                >&ensp;Follow
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/global/elements/navbar.js"></script>
+        <script src="/static/home-loggedin.js"></script>
+    </body>
+</html>

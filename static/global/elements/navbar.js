@@ -13,7 +13,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
         document.getElementById("nav-login").style.display = "block";
     }
-    if (window.location.pathname == "/") {
+    if (
+        window.location.pathname == "/" ||
+        window.location.pathname == "/home"
+    ) {
         document.getElementById("nav-go-home").className =
             document.getElementById("nav-go-home").className + " nav-loc-cur";
     }

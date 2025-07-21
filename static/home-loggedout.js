@@ -1,3 +1,7 @@
+if (localStorage.getItem("Token")) {
+    window.location.pathname = "/home";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const logInBtn = document.getElementById("front-login-button");
     logInBtn.addEventListener("click", async function () {
