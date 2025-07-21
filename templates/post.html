@@ -23,5 +23,58 @@
         <meta property="og:description" content="{{ post.content }}" />
         <meta property="og:site_name" content="Tweetof" />
     </head>
-    <body></body>
+    <body>
+        <div class="topbar">
+            <div id="navbar"></div>
+        </div>
+
+        <div id="content">
+            <div id="post-top">
+                <div id="author">
+                    <img src="https://placehold.co/100" />
+                    <a href="#">@username</a>
+                    <button id="follow-button">
+                        <i class="fa-solid fa-user-plus"></i>&ensp;Follow
+                    </button>
+                </div>
+                <div id="post-content">just setting up my tweetof</div>
+                <div class="post-actions">
+                    <a class="post-action action-reply">
+                        <i class="fa-solid fa-reply"></i>
+                    </a>
+                    <a class="post-action action-repost">
+                        <i class="fa-solid fa-repeat"></i>
+                    </a>
+                    <a class="post-action action-like">
+                        <i class="fa-solid fa-star"></i>
+                    </a>
+                </div>
+                <div id="post-stats">
+                    <div id="post-retweets" class="post-stat">
+                        <p>RETWEETS</p>
+                        <h2>1234</h2>
+                    </div>
+                    <div id="post-favorites" class="post-stat">
+                        <p>FAVORITES</p>
+                        <h2>1234</h2>
+                    </div>
+                    <div id="post-comments" class="post-stat">
+                        <p>COMMENTS</p>
+                        <h2>1234</h2>
+                    </div>
+                </div>
+            </div>
+            <div id="reply-box">
+                <img id="reply-box-pfp" />
+                <textarea
+                    id="reply-box-text"
+                    placeholder="Reply to @username..."
+                ></textarea>
+            </div>
+            <div id="comments"></div>
+        </div>
+
+        <script src="/static/global/elements/navbar.js"></script>
+        <script src="/static/post.js"></script>
+    </body>
 </html>

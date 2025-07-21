@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const me_resp = await fetch("https://api.wasteof.money/session", {
-        method: "GET",
-        headers: {
-            Authorization: localStorage.getItem("Token"),
-        },
-    });
-    const me = await me_resp.json();
+    const me = await (
+        await fetch("https://api.wasteof.money/session", {
+            method: "GET",
+            headers: {
+                Authorization: localStorage.getItem("Token"),
+            },
+        })
+    ).json();
 
     document.getElementById(
         "you-banner"
@@ -29,6 +30,29 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("home-following").children[1].innerText =
                 user_info.stats.following;
         });
+
+    const topusers = await (
+        await fetch("https://api.wasteof.money/explore/users/top")
+    ).json();
+    const shuffledUsers = [...topusers].sort(() => 0.5 - Math.random());
+    const whoToFollow = shuffledUsers.slice(0, 3);
+    for (let i = 0; i < whoToFollow.length; i++) {
+        let topUser1 = document.createElement("div");
+        topUser1.className = "follow-user";
+        let topUser1a = document.createElement("a");
+        topUser1a.className = "follow-user-h";
+        topUser1a.href = `/users/${whoToFollow[i].name}`;
+
+        topUser1.appendChild(topUser1a);
+
+        topUser1a.innerHTML = `<img src="https://api.wasteof.money/users/${whoToFollow[i].name}/picture" /><p>@${whoToFollow[i].name}</p>`;
+        let topUser1b = document.createElement("button");
+        topUser1b.className = "follow-user-btn";
+        topUser1b.innerHTML = `<i class="fa-solid fa-user-plus"></i>&ensp;Follow`;
+        topUser1.appendChild(topUser1b);
+
+        document.getElementById("follow-users").appendChild(topUser1);
+    }
 
     async function fetchHomePosts() {
         const response = await fetch(

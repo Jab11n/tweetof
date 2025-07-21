@@ -15,6 +15,34 @@ document.addEventListener("DOMContentLoaded", async () => {
             "followers"
         ).href = `/users/${username}/followers`;
 
+        document.getElementById("user-pfp").src =
+            "https://api.wasteof.money/users/" + username + "/picture";
+        document.getElementById("user-banner").src =
+            "https://api.wasteof.money/users/" + username + "/banner";
+
+        const topusers = await (
+            await fetch("https://api.wasteof.money/explore/users/top")
+        ).json();
+        const shuffledUsers = [...topusers].sort(() => 0.5 - Math.random());
+        const whoToFollow = shuffledUsers.slice(0, 3);
+        for (let i = 0; i < whoToFollow.length; i++) {
+            let topUser1 = document.createElement("div");
+            topUser1.className = "follow-user";
+            let topUser1a = document.createElement("a");
+            topUser1a.className = "follow-user-h";
+            topUser1a.href = `/users/${whoToFollow[i].name}`;
+
+            topUser1.appendChild(topUser1a);
+
+            topUser1a.innerHTML = `<img src="https://api.wasteof.money/users/${whoToFollow[i].name}/picture" /><p>@${whoToFollow[i].name}</p>`;
+            let topUser1b = document.createElement("button");
+            topUser1b.className = "follow-user-btn";
+            topUser1b.innerHTML = `<i class="fa-solid fa-user-plus"></i>&ensp;Follow`;
+            topUser1.appendChild(topUser1b);
+
+            document.getElementById("follow-users").appendChild(topUser1);
+        }
+
         async function fetchUserData(username) {
             const response = await fetch(
                 `https://api.wasteof.money/users/${username}`
@@ -311,10 +339,5 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             }
         }
-
-        document.getElementById("user-pfp").src =
-            "https://api.wasteof.money/users/" + username + "/picture";
-        document.getElementById("user-banner").src =
-            "https://api.wasteof.money/users/" + username + "/banner";
     }
 });
