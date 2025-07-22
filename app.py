@@ -73,6 +73,10 @@ def post_view(post_id):
     }
     return render_template('post.html', id=post_id, post=post, color=getColor(post_info["poster"]["color"]))
 
+@app.route('/explore')
+def explore():
+    return render_template('explore.html')
+
 @app.route('/static/<path:path>')
 def serve_static(path):
     return send_from_directory('static', path)

@@ -1,0 +1,140 @@
+body {
+    background-color: #f5f8fa;
+    color: #292f33;
+    overflow-x: hidden;
+}
+#explore-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    margin-top: 56px;
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+}
+#explore-center {
+    flex: 1;
+    background-color: #fff;
+}
+#col-right {
+    width: 260px;
+}
+.post-pfp {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 6px;
+}
+.post-actions {
+    margin-left: 60px !important;
+}
+.post-inner1 {
+    gap: 10px !important;
+}
+#explore-see-more {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e1e8ed;
+    cursor: pointer;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+#top-users {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 6px 6px 0 0;
+    border: 1px solid #e1e8ed;
+    padding: 9px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#top-users > h2 {
+    color: #8899a6;
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+#top-user-row {
+    display: grid;
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(172px, 1fr));
+    gap: 10px;
+}
+.top-user {
+    display: flex;
+    border: 1px solid #e1e8ed;
+    flex-direction: column;
+    width: 180px;
+    width: 172px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.top-user:hover {
+    text-decoration: none;
+}
+.top-user-banner {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px 5px 0 0;
+}
+.top-user-pfp {
+    margin-left: 10px;
+    margin-top: -25px;
+    width: 48px;
+    height: 48px;
+    border: 3px solid #fff;
+    border-radius: 7px;
+}
+.top-user h2 {
+    margin: 10px 0 10px 10px;
+    font-size: 14px !important;
+    color: #292f33 !important;
+    text-decoration: none;
+    font-weight: bold;
+}
+.top-user h2:hover {
+    color: #292f33 !important;
+    text-decoration-color: #292f33;
+}
+.follow-user-btn {
+    margin: 0 0 10px 10px;
+}
+.top-user:hover > .follow-user-btn {
+    text-decoration: none !important;
+}
+#posts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0 0 6px 6px;
+    border-left: 1px solid #e1e8ed;
+    border-right: 1px solid #e1e8ed;
+    border-bottom: 1px solid #e1e8ed;
+    padding: 9px 12px;
+    gap: 10px;
+}
+#trending-top {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+}
+#trending-top h2 {
+    color: #8899a6;
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+#trending-time {
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    font-size: 14px;
+}

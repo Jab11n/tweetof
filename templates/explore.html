@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Explore - Tweetof</title>
+        <link rel="stylesheet" href="/static/root.css" />
+        <link rel="stylesheet" href="/static/global/elements/navbar.css" />
+        <link rel="stylesheet" href="/static/explore.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="/static/postdisplay-compact.css" />
+    </head>
+    <body>
+        <div class="topbar">
+            <div id="navbar"></div>
+        </div>
+
+        <div id="explore-content">
+            <div id="explore-center">
+                <div id="top-users">
+                    <h2>Top Users</h2>
+                    <div id="top-user-row"></div>
+                </div>
+                <div id="posts">
+                    <div id="trending-top">
+                        <h2>Trending Posts&nbsp;</h2>
+                        <select id="trending-time">
+                            <option value="week">this week</option>
+                            <option value="day">today</option>
+                            <option value="month">this month</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="col-right">
+                <div id="who-to-follow">
+                    <h2>Who to follow</h2>
+                    <div id="follow-users"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/global/elements/navbar.js"></script>
+        <script src="/static/explore.js"></script>
+    </body>
+</html>
