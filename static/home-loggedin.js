@@ -293,20 +293,24 @@ ${postActionsInsert}
 
     async function loadMorePosts() {
         postsPage++;
-        let nextPage = await await fetch(
-            `https://wasteof.money/users/${me.user.name}/following/posts?page=${postsPage}`,
-            {
-                headers: {
-                    Authorization: localStorage.getItem("Token"),
-                },
-            }
-        );
+        let nextPage = await (
+            await fetch(
+                `https://api.wasteof.money/users/${me.user.name}/following/posts?page=${postsPage}`,
+                {
+                    headers: {
+                        Authorization: localStorage.getItem("Token"),
+                    },
+                }
+            )
+        ).json();
         loadPosts(nextPage);
     }
 
     function createLoadButton() {
         if (document.getElementById("home-see-more")) {
-            document.removeChild(document.getElementById("home-see-more"));
+            document
+                .getElementById("posts")
+                .removeChild(document.getElementById("home-see-more"));
         }
         let loadMoreBtn = document.createElement("buttton");
         loadMoreBtn.id = "home-see-more";

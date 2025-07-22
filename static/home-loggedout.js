@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (resp.ok) {
                     localStorage.setItem("Token", data.token);
                     localStorage.setItem("Username", username);
-                    alert("Login Successful.");
+                    window.location.pathname = "/home";
                 }
             } catch (error) {
                 console.error("Error during login:", error);

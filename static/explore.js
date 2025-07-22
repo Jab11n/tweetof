@@ -34,5 +34,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         //
     }
 
+    async function getTopPosts(timeframe) {
+        let trendingPosts = await (
+            await fetch(
+                `https://api.wasteof.money/explore/posts/trending?timeframe=${
+                    document.getElementById("trending-time").value
+                }`
+            )
+        ).json();
+    }
+
     getTopUsers();
+    getTopPosts();
 });
