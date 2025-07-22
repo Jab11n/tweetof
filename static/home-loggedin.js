@@ -12,6 +12,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
     ).json();
 
+    async function likePost(post_id) {
+        let response = await (
+            await fetch(`https://api.wasteof.money/posts/${post_id}/loves`, {
+                headers: {
+                    Authorization: localStorage.getItem("Token"),
+                },
+                method: "POST",
+            })
+        ).json();
+        if (response.ok == "loved") {
+            let postElement = document.getElementById(`POST_${post_id}`);
+            postElement.children[1].children[2].className = `post-action action-like action-like-true`;
+            postElement.children[1].children[2].children[1].innerText =
+                response.new.loves; // this is definitely not efficient but who cares 😂
+        } else {
+            let postElement = document.getElementById(`POST_${post_id}`);
+            postElement.children[1].children[2].className = `post-action action-like`;
+            postElement.children[1].children[2].children[1].innerText =
+                response.new.loves;
+        }
+    }
+
     document.getElementById(
         "you-banner"
     ).src = `https://api.wasteof.money/users/${me.user.name}/banner`;
@@ -72,6 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         let postElement = document.createElement("div");
         postElement.className = "post-compact";
+        postElement.id = `POST_${post._id}`;
 
         if (
             post.repost &&
@@ -224,8 +247,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 </a>
 ${postActionsInsert}
                 `;
-        postElement.appendChild(postActions);
 
+        let likebtn = postActions.querySelector(".action-like");
+        likebtn.addEventListener("click", () => {
+            likePost(post._id);
+        });
+        postElement.appendChild(postActions);
+        postActions.querySelectorAll(".post-action").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+        });
         postElement.addEventListener("click", () => {
             window.location.href = `/posts/${post._id}`;
         });
