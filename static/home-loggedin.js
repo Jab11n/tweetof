@@ -208,31 +208,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         postActions.className = "post-actions";
         let postActionsInsert;
         if (localStorage.getItem("Token")) {
-            let res = await fetch(
-                `https://api.wasteof.money/posts/${
-                    post._id
-                }/loves/${localStorage.getItem("Username")}`,
-                {
-                    method: "GET",
-                    headers: {
-                        Authorization: localStorage.getItem("Token"),
-                    },
-                }
-            );
-            let resData = await res.json();
-            if (res.ok && resData.loved === "true") {
-                postActionsInsert = `<a class="post-action action-like action-like-true" href="#">
+            let res = await (
+                await fetch(
+                    `https://api.wasteof.money/posts/${
+                        post._id
+                    }/loves/${localStorage.getItem("Username")}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            Authorization: localStorage.getItem("Token"),
+                        },
+                    }
+                )
+            ).json();
+            console.log(res);
+            if (res == true) {
+                postActionsInsert = `<a class="post-action action-like action-like-true">
 <i class="fa-solid fa-star"></i>
 <span class="like-count">${post.loves}</span>
 </a>`;
             } else {
-                postActionsInsert = `<a class="post-action action-like" href="#">
+                postActionsInsert = `<a class="post-action action-like">
 <i class="fa-solid fa-star"></i>
 <span class="like-count">${post.loves}</span>
 </a>`;
             }
         } else {
-            postActionsInsert = `<a class="post-action action-like" href="#">
+            postActionsInsert = `<a class="post-action action-like">
 <i class="fa-solid fa-star"></i>
 <span class="like-count">${post.loves}</span>
 </a>`;
