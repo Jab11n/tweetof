@@ -3,6 +3,8 @@ if (!localStorage.getItem("Token")) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+    let postsPage = 1;
+
     const me = await (
         await fetch("https://api.wasteof.money/session", {
             method: "GET",
@@ -268,15 +270,51 @@ ${postActionsInsert}
     }
 
     if (homePosts) {
-        Promise.all(homePosts.posts.map((post) => loadPost(post)))
+        loadPosts(homePosts);
+    } else {
+        document.getElementById(
+            "posts"
+        ).innerHTML = `<p class="no-posts">There are no posts to display.</p>`;
+    }
+
+    async function loadPosts(postsToLoad) {
+        Promise.all(postsToLoad.posts.map((post) => loadPost(post)))
             .then((elems) => {
                 const postContainer = document.getElementById("posts");
                 for (const e of elems) {
                     postContainer.appendChild(e);
                 }
+
+                createLoadButton();
             })
             .catch((e) => {
                 console.error(e);
             });
+    }
+
+    async function loadMorePosts() {
+        postsPage++;
+        let nextPage = await await fetch(
+            `https://wasteof.money/users/${me.user.name}/following/posts?page=${postsPage}`,
+            {
+                headers: {
+                    Authorization: localStorage.getItem("Token"),
+                },
+            }
+        );
+        loadPosts(nextPage);
+    }
+
+    function createLoadButton() {
+        if (document.getElementById("home-see-more")) {
+            document.removeChild(document.getElementById("home-see-more"));
+        }
+        let loadMoreBtn = document.createElement("buttton");
+        loadMoreBtn.id = "home-see-more";
+        loadMoreBtn.innerText = "Load More";
+        loadMoreBtn.addEventListener("click", () => {
+            loadMorePosts();
+        });
+        document.getElementById("posts").appendChild(loadMoreBtn);
     }
 });

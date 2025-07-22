@@ -130,3 +130,18 @@ body {
 .post-inner1 {
     gap: 10px !important;
 }
+#home-see-more {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e1e8ed;
+    cursor: pointer;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+.no-posts {
+    font-style: italic;
+    text-align: center;
+}
