@@ -223,8 +223,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                 )
             ).json();
-            console.log(res);
-            if (res == true) {
+            if (res) {
                 postActionsInsert = `<a class="post-action action-like action-like-true">
 <i class="fa-solid fa-star"></i>
 <span class="like-count">${post.loves}</span>

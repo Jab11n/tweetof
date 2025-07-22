@@ -3,6 +3,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("reply-box").style.display = "none";
     }
 
+    let me = await (
+        await fetch("https://api.wasteof.money/session", {
+            method: "GET",
+            headers: {
+                Authorization: localStorage.getItem("Token"),
+            },
+        })
+    ).json();
+
     let post_id = window.location.pathname.split("/posts/")[1];
     async function getPostData(post_id) {
         const response = await fetch(
@@ -28,6 +37,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
+    async function likePost() {
+        let res = await (
+            await fetch(`https://api.wasteof.money/posts/${post_id}/loves`, {
+                method: "POST",
+                headers: {
+                    Authorization: localStorage.getItem("Token"),
+                },
+            })
+        ).json();
+        if (response.ok == true) {
+            document.getElementById(
+                "post-top"
+            ).children[2].children[2].className =
+                "post-action action-like action-like-true";
+        } else {
+            document.getElementById(
+                "post-top"
+            ).children[2].children[2].className = "post-action action-like";
+        }
+    }
+
     const postinfo = await getPostData(post_id);
 
     document.getElementById(
@@ -42,10 +72,28 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("post-content").innerHTML = postinfo.content;
 
+    let loved = await (
+        await fetch(
+            `https://api.wasteof.money/posts/${post_id}/loves/${me.user.name}`,
+            {
+                headers: {
+                    Authorization: localStorage.getItem("Token"),
+                },
+            }
+        )
+    ).json();
+
     document.getElementById("post-retweets").children[1].innerText =
         postinfo.reposts;
     document.getElementById("post-favorites").children[1].innerText =
         postinfo.loves;
+    if (loved) {
+        document.getElementById("post-top").children[2].children[2].className =
+            "post-action action-like action-like-true";
+    }
+    document.getElementById("post-favorites").addEventListener("click", () => {
+        likePost();
+    });
     document.getElementById("post-comments").children[1].innerText =
         postinfo.comments;
 
@@ -56,15 +104,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById(
         "reply-box-text"
     ).placeholder = `Reply to @${postinfo.poster.name}...`;
-
-    const me = await (
-        await fetch("https://api.wasteof.money/session", {
-            method: "GET",
-            headers: {
-                Authorization: localStorage.getItem("Token"),
-            },
-        })
-    ).json();
 
     document.getElementById(
         "reply-box-pfp"
