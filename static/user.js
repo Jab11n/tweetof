@@ -256,19 +256,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             postActions.className = "post-actions";
             let postActionsInsert;
             if (localStorage.getItem("Token")) {
-                let res = await fetch(
-                    `https://api.wasteof.money/posts/${
-                        post._id
-                    }/loves/${localStorage.getItem("Username")}`,
-                    {
-                        method: "GET",
-                        headers: {
-                            Authorization: localStorage.getItem("Token"),
-                        },
-                    }
-                );
-                let resData = await res.json();
-                if (res.ok && resData.loved === "true") {
+                let res = await (
+                    await fetch(
+                        `https://api.wasteof.money/posts/${
+                            post._id
+                        }/loves/${localStorage.getItem("Username")}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                Authorization: localStorage.getItem("Token"),
+                            },
+                        }
+                    )
+                ).json();
+                if (res == true) {
                     postActionsInsert = `
                                 <a class="post-action action-like action-like-true" href="#">
                                 <i class="fa-solid fa-star"></i>
