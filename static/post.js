@@ -172,60 +172,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 replyElem.style.borderRight = "none";
                 commentElement.appendChild(replyElem);
             }
-            /*
-            for (let i = 0; i < replies.comments.length; i++) {
-                let replyObj = replies.comments[i];
-                let replyElement = document.createElement("div");
-                replyElement.className = "comment";
-                replyElement.style.paddingLeft = `24px`;
-                replyElement.style.marginLeft = `24px`;
-                replyElement.style.borderRight = "none";
-
-                let rInner = document.createElement("div");
-                rInner.className = "c-inner";
-                replyElement.appendChild(rInner);
-
-                let replyPfp = document.createElement("img");
-                replyPfp.src = `https://api.wasteof.money/users/${replyObj.poster.name}/picture`;
-                rInner.appendChild(replyPfp);
-
-                let rThings = document.createElement("div");
-                rThings.className = "comment-things";
-                rInner.appendChild(rThings);
-
-                let rAuthor = document.createElement("div");
-                rAuthor.className = "c-author";
-                rThings.appendChild(rAuthor);
-
-                let rPosterName = document.createElement("a");
-                rPosterName.href = `/users/${replyObj.poster.name}`;
-                rPosterName.innerText = `@${replyObj.poster.name}`;
-                rAuthor.appendChild(rPosterName);
-
-                let rPostTime = document.createElement("p");
-                rPostTime.innerText = new Date(replyObj.time).toLocaleString();
-                rAuthor.appendChild(rPostTime);
-
-                let rContent = document.createElement("div");
-                rContent.className = "comment-text";
-                rContent.innerHTML = `<p>${replyObj.content}</p>`;
-                rThings.appendChild(rContent);
-
-                let rActions = document.createElement("div");
-                rActions.className = "post-actions";
-                rThings.appendChild(rActions);
-
-                let rReply = document.createElement("div");
-                rReply.className = "post-action action-reply";
-                rReply.innerHTML = `<i class="fa-solid fa-reply"></i>`;
-                let rMore = document.createElement("div");
-                rMore.className = "post-action action-more";
-                rMore.innerHTML = `<i class="fa-solid fa-ellipsis"></i>`;
-                rActions.appendChild(rReply);
-                rActions.appendChild(rMore);
-
-                commentElement.appendChild(replyElement);
-            }*/
         }
 
         return commentElement;
