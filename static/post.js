@@ -165,6 +165,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                 )
             ).json();
             for (let i = 0; i < replies.comments.length; i++) {
+                const replyElem = await loadComment(replies.comments[i]);
+                replyElem.style.paddingRight = "0px";
+                replyElem.style.marginLeft = "16px";
+                replyElem.style.paddingLeft = "16px";
+                replyElem.style.borderRight = "none";
+                commentElement.appendChild(replyElem);
+            }
+            /*
+            for (let i = 0; i < replies.comments.length; i++) {
                 let replyObj = replies.comments[i];
                 let replyElement = document.createElement("div");
                 replyElement.className = "comment";
@@ -216,7 +225,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 rActions.appendChild(rMore);
 
                 commentElement.appendChild(replyElement);
-            }
+            }*/
         }
 
         return commentElement;
