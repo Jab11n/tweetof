@@ -102,3 +102,29 @@ ul {
 .follow-user-h p {
     margin: 0;
 }
+.side-thing {
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.side-thing h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-bottom: 1px solid #e1e8ed;
+}
+.side-thing p {
+    margin: 0;
+    padding: 0 12px;
+    margin-bottom: 12px;
+}
