@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ username }}'s wall on Tweetof</title>
+        <link rel="stylesheet" href="/static/root.css" />
+        <link rel="stylesheet" href="/static/global/elements/navbar.css" />
+        <link rel="stylesheet" href="/static/user.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="/static/postdisplay-compact.css" />
+
+        <meta name="theme-color" content="{{ user.color }}" />
+        <meta
+            property="og:title"
+            content="@{{ username }}'s profile on Tweetof"
+        />
+        <meta
+            property="og:description"
+            content="{{ user.bio }}{{ username }} has {{ user.posts }} posts, {{ user.followers }} followers, and is following {{ user.following }} users on wasteof.money."
+        />
+        <meta property="og:site_name" content="Tweetof" />
+    </head>
+    <body>
+        <div class="topbar">
+            <div id="navbar"></div>
+        </div>
+
+        <div class="syntheticstatsbar"></div>
+
+        <div id="page-container">
+            <div id="user-info">
+                <img src="" id="user-banner" />
+                <div id="contents">
+                    <img id="user-pfp" src="" />
+                    <div id="stats-bar">
+                        <a id="posts-count" class="stat-current stat" href="#">
+                            <p>POSTS</p>
+                            <h2 id="user-stat-post-count"></h2>
+                        </a>
+                        <a id="following" class="stat" href="following">
+                            <p>FOLLOWING</p>
+                            <h2 id="user-stat-following-count"></h2>
+                        </a>
+                        <a id="followers" class="stat" href="followers">
+                            <p>FOLLOWERS</p>
+                            <h2 id="user-stat-follower-count"></h2>
+                        </a>
+                        <button id="follow-button">
+                            <i class="fa-solid fa-user-plus"></i>&ensp;Follow
+                        </button>
+                    </div>
+                    <div id="main-panel">
+                        <div id="user">
+                            <h1 id="name"></h1>
+                            <p id="userid"></p>
+                            <p id="bio"></p>
+                            <div id="user-items">
+                                <p id="user-join">
+                                    <i class="fa-regular fa-clock"></i
+                                    >&ensp;Joined
+                                </p>
+                                <p id="user-color">
+                                    <i class="fa-solid fa-square-pen"></i
+                                    >&ensp;Color:
+                                </p>
+                                <p id="user-online"></p>
+                            </div>
+                        </div>
+                        <div id="usercontent">
+                            <div id="post-nav">
+                                <a id="posts-nav" class="post-navitem">
+                                    Posts
+                                </a>
+                                <a
+                                    id="wall-nav"
+                                    class="post-navitem post-navitem-current"
+                                    href=""
+                                >
+                                    Wall
+                                </a>
+                            </div>
+                            <div id="posts"></div>
+                        </div>
+                        <div id="col-right">
+                            <div id="login-user" style="display: none">
+                                <h2 id="loginuser-title">
+                                    Don't miss anything from
+                                    <span id="loginuser-name">username</span>
+                                </h2>
+                                <button
+                                    id="loginuser-signupbutton"
+                                    onclick="window.location.href = 'https://wasteof.money'"
+                                >
+                                    Sign up for Wasteof
+                                </button>
+                            </div>
+                            <div id="who-to-follow">
+                                <h2>Who to follow</h2>
+                                <div id="follow-users"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/static/global/elements/navbar.js"></script>
+        <script src="/static/user.js"></script>
+    </body>
+</html>

@@ -72,8 +72,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const userData = await fetchUserData(username);
 
         if (userData) {
-            console.log("User data:", userData);
-            document.title = userData.name + " - Tweetof";
             document.getElementById("user-stat-post-count").innerText =
                 userData.stats.posts;
             document.getElementById("user-stat-following-count").innerText =
