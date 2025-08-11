@@ -112,9 +112,10 @@ body {
     box-sizing: border-box;
     flex: 1;
     font-family: inherit;
+    resize: vertical;
     font-size: 14px;
-    resize: none;
-    height: 35px;
+    min-height: 35px;
+    max-height: 200px;
 }
 #tweet-box-compose:focus {
     color: #292f33;
@@ -144,4 +145,25 @@ body {
 .no-posts {
     font-style: italic;
     text-align: center;
+}
+
+#editor {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 150px;
+    flex: 1;
+}
+#tweet-box-send {
+    width: 75px;
+    border: 1px solid #3b88c3;
+    background-color: #55acee;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 34px;
+}
+#tweet-box-send:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
 }

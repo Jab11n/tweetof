@@ -69,6 +69,31 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
+        async function likePost(post_id) {
+            let response = await (
+                await fetch(
+                    `https://api.wasteof.money/posts/${post_id}/loves`,
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem("Token"),
+                        },
+                        method: "POST",
+                    }
+                )
+            ).json();
+            if (response.ok == "loved") {
+                let postElement = document.getElementById(`POST_${post_id}`);
+                postElement.children[1].children[2].className = `post-action action-like action-like-true`;
+                postElement.children[1].children[2].children[1].innerText =
+                    response.new.loves; // this is definitely not efficient but who cares 😂 also this is copypasted from home-loggedin.js
+            } else {
+                let postElement = document.getElementById(`POST_${post_id}`);
+                postElement.children[1].children[2].className = `post-action action-like`;
+                postElement.children[1].children[2].children[1].innerText =
+                    response.new.loves;
+            }
+        }
+
         const userData = await fetchUserData(username);
 
         if (userData) {
@@ -99,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     document.getElementById("name").innerHTML +
                     "&nbsp;<i class='fa-solid fa-flask'></i>";
             }
-            if (userData.name === "-gr") {
+            if (userData.name === "-gr" || userData.name === "tweetof") {
                 document.getElementById("name").innerHTML =
                     document.getElementById("name").innerHTML +
                     "&nbsp;<i class='fa-brands fa-twitter'></i>";
@@ -154,6 +179,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
             let postElement = document.createElement("div");
             postElement.className = "post-compact";
+            postElement.id = `POST_${post._id}`;
 
             if (post.repost && post.content == "") {
                 let retweetElement = document.createElement("div");
@@ -271,14 +297,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ).json();
                 if (res == true) {
                     postActionsInsert = `
-                                <a class="post-action action-like action-like-true" href="#">
+                                <a class="post-action action-like action-like-true">
                                 <i class="fa-solid fa-star"></i>
                                 <span class="like-count">${post.loves}</span>
                                 </a>
                             `;
                 } else {
                     postActionsInsert = `
-                                <a class="post-action action-like" href="#">
+                                <a class="post-action action-like">
                                 <i class="fa-solid fa-star"></i>
                                 <span class="like-count">${post.loves}</span>
                                 </a>
@@ -286,23 +312,32 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             } else {
                 postActionsInsert = `
-                                <a class="post-action action-like" href="#">
+                                <a class="post-action action-like">
                         <i class="fa-solid fa-star"></i>
                         <span class="like-count">${post.loves}</span>
                     </a>`;
             }
             postActions.innerHTML = `
-                    <a class="post-action action-reply" href="#">
+                    <a class="post-action action-reply">
                         <i class="fa-solid fa-reply"></i>
                         <span class="comment-count">${post.comments}</span>
                     </a>
-                    <a class="post-action action-repost" href="#">
+                    <a class="post-action action-repost">
                         <i class="fa-solid fa-repeat"></i>
                         <span class="repost-count">${post.reposts}</span>
                     </a>
                     ${postActionsInsert}
                 `;
+            let likebtn = postActions.querySelector(".action-like");
+            likebtn.addEventListener("click", () => {
+                likePost(post._id);
+            });
             postElement.appendChild(postActions);
+            postActions.querySelectorAll(".post-action").forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                });
+            });
 
             postElement.addEventListener("click", () => {
                 window.location.href = `/posts/${post._id}`;

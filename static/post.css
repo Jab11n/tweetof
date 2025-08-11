@@ -239,3 +239,13 @@ body {
     line-height: 18px;
     margin: 0;
 }
+.comment-text > blockquote > * {
+    margin: 0;
+}
+blockquote {
+    border-left: 4px solid #e1e8ed;
+    padding-left: 8px;
+}
+blockquote p {
+    font-style: italic;
+}
